@@ -4,6 +4,12 @@ var path = require('path');
 
 app.set('port', 3000);
 
+// Middleware
+app.use(function(req, res, next) {
+    console.log(req.method, req.url);
+    next();
+});
+
 // Route static content
 app.use(express.static(path.join(__dirname, 'public')));
 
