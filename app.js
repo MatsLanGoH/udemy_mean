@@ -4,6 +4,9 @@ var path = require('path');
 
 app.set('port', 3000);
 
+// Route static content
+app.use(express.static(path.join(__dirname, 'public')));
+
 // Routing
 app.get('/', function(req, res) {
     console.log("GET the homepage");
