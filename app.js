@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var path = require('path');
+var routes = require('./routes');
 
 app.set('port', 3000);
 
@@ -12,6 +13,11 @@ app.use(function(req, res, next) {
 
 // Route static content
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+// Use routes
+app.use('/api', routes);
+
 
 // Routing
 app.get('/', function(req, res) {
