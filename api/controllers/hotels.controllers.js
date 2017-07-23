@@ -24,3 +24,11 @@ module.exports.getSingleHotel = function (req, res) {
     .status(200)
     .json(hotelJson);
 };
+
+module.exports.addSingleHotel = function (req, res) {
+  console.log("POST new hotel");
+  console.log(req.body);
+  res
+    .status(200)
+    .json(req.body);
+}

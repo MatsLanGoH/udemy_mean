@@ -1,4 +1,5 @@
 var express = require('express');
+var bodyParser = require('body-parser');
 var app = express();
 var path = require('path');
 var routes = require('./api/routes');
@@ -14,6 +15,8 @@ app.use(function (req, res, next) {
 // Route static content
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Parse form bodies.
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // Use routes
 app.use('/api', routes);
