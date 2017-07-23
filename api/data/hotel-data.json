@@ -92,7 +92,7 @@
         "type": "Executive Double Room",
         "number": 25,
         "description": "These are double rooms",
-        "photos": ["/photos/room/grandhotelpalatino/4.jpg", "/photos/room/grandhotelpalatino/6.jpg"],
+        "photos": ["/photos/room/grandhotelpalatino/5.jpg", "/photos/room/grandhotelpalatino/6.jpg"],
         "price": 322.5
     }, {
         "type": "Superior Double Room",
