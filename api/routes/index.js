@@ -4,6 +4,10 @@ var hotelController = require('../controllers/hotels.controllers.js');
 
 router
   .route('/hotels')
-  .get(hotelController.hotelsGetAll);
+  .get(hotelController.getAllHotels);
+
+router
+  .route('/hotels/:hotelId')
+  .get(hotelController.getSingleHotel);
 
 module.exports = router;
