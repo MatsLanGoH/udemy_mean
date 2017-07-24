@@ -1,6 +1,5 @@
 var dbconn = require('../data/dbconnection.js');
 var ObjectId = require('mongodb').ObjectId;
-var hotelData = require('../data/hotel-data.json');
 
 module.exports.getAllHotels = function (req, res) { // Controller
 
@@ -46,7 +45,6 @@ module.exports.getSingleHotel = function (req, res) {
 
 };
 
-
 module.exports.addSingleHotel = function (req, res) {
   // Connect to database
   var db = dbconn.get();
@@ -63,8 +61,8 @@ module.exports.addSingleHotel = function (req, res) {
     collection.insertOne(newHotel, function(err, response) {
       console.log(response);
       res
-        .status(201)
-        .json(response.ops);
+        .status(200)
+        .json(newHotel);
     })
 
   } else {
