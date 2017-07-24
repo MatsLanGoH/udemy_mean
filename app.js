@@ -1,4 +1,4 @@
-require('./api/data/dbconnection.js').open();  // Create a reusable connection
+require('./api/data/db.js'); // Create a reusable connection
 var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
