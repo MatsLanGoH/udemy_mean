@@ -1,34 +1,49 @@
 var dbconn = require('../data/dbconnection.js');
+var ObjectId = require('mongodb').ObjectId;
 var hotelData = require('../data/hotel-data.json');
 
 module.exports.getAllHotels = function (req, res) { // Controller
 
+  // Connect to database
   var db = dbconn.get();
-
-  console.log("db", db);
-
-  console.log("GET the json");
-  console.log(req.query);
+  var collection = db.collection('hotels');
 
   // Get values for pagination from query (or use default if none given)
   var offset = parseInt(req.query.offset) || 0;
   var count = parseInt(req.query.count) || 5;
 
-  var returnData = hotelData.slice(offset, offset + count);
+  collection
+    .find()
+    .skip(offset)
+    .limit(count)
+    .toArray(function(err, docs) {
+      console.log("Found hotels", docs);
+      res
+        .status(200)
+        .json(docs);
+    });
 
-  res
-    .status(200)
-    .json(returnData);
 };
 
 module.exports.getSingleHotel = function (req, res) {
-  var hotelId = req.params.hotelId;
-  var hotelJson = hotelData[hotelId];
 
+  // Connect to database
+  var db = dbconn.get();
+  var collection = db.collection('hotels');
+
+  var hotelId = req.params.hotelId;
   console.log("GET hotelId", hotelId);
-  res
-    .status(200)
-    .json(hotelJson);
+
+  // Retrieve result for given Id.
+  collection
+    .findOne({
+      _id : ObjectId(hotelId)
+    }, function(err, doc) {
+      res
+        .status(200)
+        .json(doc);
+    })
+
 };
 
 module.exports.addSingleHotel = function (req, res) {
