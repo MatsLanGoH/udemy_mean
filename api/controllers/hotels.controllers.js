@@ -32,15 +32,9 @@ module.exports.getSingleHotel = function (req, res) {
   Hotel
     .findById(hotelId)
     .exec(function(err, doc) {
-      if (err) {
-        res
-          .status(400)
-          .send("No hotel found for ID " + hotelId);
-      } else {
-        res
-          .status(200)
-          .json(doc);
-      }
+      res
+        .status(200)
+        .json(doc);
     });
 };
 
