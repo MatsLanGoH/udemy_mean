@@ -1,4 +1,8 @@
 var mongoose = require('mongoose');
+
+// use Native Promise
+mongoose.Promise = global.Promise;
+
 var Hotel = mongoose.model('Hotel');
 
 // GET all reviews for a hotel
