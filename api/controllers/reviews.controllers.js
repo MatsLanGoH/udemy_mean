@@ -58,7 +58,7 @@ module.exports.getSingleReview = function(req, res) {
       } else if (!hotel) {
         response.status = 404;
         response.message = {
-          message : "Hotel ID not found " + id
+          message : "Hotel ID not found " + hotelId
         };
       } else {
         // Get the review
