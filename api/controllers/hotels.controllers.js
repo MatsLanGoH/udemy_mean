@@ -28,9 +28,23 @@ var runGeoQuery = function(req, res) {
     .geoNear(point, geoOptions, function(err, result, stats) {
       console.log('Geo results', result);
       console.log('Geo stats', stats);
-      res
-        .status(200)
-        .json(result);
+      if (err) {
+        res
+          .status(400)
+          .json({
+            message : "Query parameters lat and lng should be given as coordinates."
+          })
+      } else if (result.length == 0) {
+        res
+          .status(500)
+          .json({
+            message : "No results found for given coordinates"
+          })
+      } else {
+        res
+          .status(200)
+          .json(result);
+      }
     });
 };
 
