@@ -6,20 +6,18 @@ var reviewController = require('../controllers/reviews.controllers.js');
 // Hotel routes
 router
   .route('/hotels')
-  .get(hotelController.getAllHotels);
+  .get(hotelController.getAllHotels)
+  .post(hotelController.addSingleHotel);
 
 router
   .route('/hotels/:hotelId')
   .get(hotelController.getSingleHotel);
 
-router
-  .route('/hotels/new')
-  .post(hotelController.addSingleHotel);
-
 // Review routes
 router
   .route('/hotels/:hotelId/reviews')
   .get(reviewController.getAllReviews);
+  .post(reviewController.addSingleReview);
 
 router
   .route('/hotels/:hotelId/reviews/:reviewId')
