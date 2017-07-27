@@ -149,7 +149,7 @@ var _splitArray = function(input) {
   return output;
 }
 
-// Adds a single hotel to the ds
+// Adds a single hotel to the db
 module.exports.addSingleHotel = function (req, res) {
 
   Hotel
