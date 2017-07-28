@@ -136,4 +136,7 @@ module.exports.addSingleReview = function (req, res) {
     });
 }
 
+// Update a review
+module.exports.updateSingleReview = function (req, res) {
 
+};
