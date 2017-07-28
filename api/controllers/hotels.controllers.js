@@ -232,21 +232,21 @@ module.exports.updateSingleHotel = function (req, res) {
         doc.save(function (err, updatedHotel) {
           // Send response
           if (err) {
-            res
-              .status(500)
-              .json(err);
-            // response.status = 500;
-            // response.message = err;
+            // res
+              // .status(500)
+              // .json(err);
+            response.status = 500;
+            response.message = err;
           } else {
-            res
-              .status(204)
-              .json();
-            // response.status = 204;
-            // response.message = updatedHotel;
+            // res
+              // .status(204)
+              // .json();
+            response.status = 204;
+            response.message = updatedHotel;
           }
-          // res
-            // .status(response.status)
-            // .json(response.message);
+          res
+            .status(response.status)
+            .json(response.message);
         });
       }
     });
