@@ -217,12 +217,12 @@ module.exports.updateSingleHotel = function (req, res) {
         doc.name = req.body.name;
         doc.description = req.body.description;
         doc.stars = parseInt(req.body.stars, 10),
-        doc.services = _splitArray(req.body.services);
+          doc.services = _splitArray(req.body.services);
         doc.photos = _splitArray(req.body.photos);
         doc.currency = req.body.currency;
         doc.location = {
-          address : req.body.address,
-          coordinates : [
+          address: req.body.address,
+          coordinates: [
             parseFloat(req.body.lng),
             parseFloat(req.body.lat)
           ]
@@ -233,14 +233,14 @@ module.exports.updateSingleHotel = function (req, res) {
           // Send response
           if (err) {
             // res
-              // .status(500)
-              // .json(err);
+            // .status(500)
+            // .json(err);
             response.status = 500;
             response.message = err;
           } else {
             // res
-              // .status(204)
-              // .json();
+            // .status(204)
+            // .json();
             response.status = 204;
             response.message = updatedHotel;
           }
@@ -253,7 +253,7 @@ module.exports.updateSingleHotel = function (req, res) {
 }
 
 // Delete a single hotel from the db
-module.exports.deleteSingleHotel = function(req, res) {
+module.exports.deleteSingleHotel = function (req, res) {
 
   // Find the hotel in db
   var hotelId = req.params.hotelId;
@@ -274,7 +274,7 @@ module.exports.deleteSingleHotel = function(req, res) {
       } else if (!doc) {
         response.status = 500;
         response.message = {
-          "message" : "Hotel ID not found"
+          "message": "Hotel ID not found"
         };
       }
       res
