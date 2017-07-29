@@ -156,7 +156,7 @@ module.exports.updateSingleReview = function (req, res) {
         response.status = 500;
         response.message = err;
       } else if (!hotel) {
-        console.log("Hotel ID note found in database", hotelId);
+        console.log("Hotel ID not found in database", hotelId);
         response.status = 404;
         response.message = {
           "message" : "Hotel ID not found" + hotelId
@@ -202,5 +202,62 @@ module.exports.updateSingleReview = function (req, res) {
 
 // Delete a review
 module.exports.deleteSingleReview = function (req, res) {
+  // Get review and hotel ID
+  var hotelId = req.params.hotelId;
+  var reviewId = req.params.reviewId;
 
+  Hotel
+    .findById(hotelId)
+    .select('reviews')
+    .exec(function (err, hotel) {
+      var thisReview;
+      var response = {
+        status : 200,
+        message : {}
+      };
+
+      if (err) {
+        console.log("Error finding hotel");
+        response.status = 500;
+        response.message = err;
+      } else if (!hotel) {
+        console.log("Hotel ID not found in database: ", hotelId);
+        response.status = 404;
+        response.message = {
+          "message" : "Hotel ID not found " + hotelId
+        };
+      } else {
+        // Get the review
+        thisReview = hotel.reviews.id(reviewId);
+        // If the review doesn't exist Mongoose return null
+        if (!thisReview) {
+          response.status = 404;
+          response.message = {
+            "message" : "Review ID not found " + reviewId
+          };
+        };
+      }
+
+      // Bail here if we had a problem
+      if (response.status != 200) {
+        res
+          .status(response.status)
+          .json(response.message);
+      } else {
+        // Remove the subdocument and save the parent
+        thisReview.remove();
+        hotel.save(function (err) {
+          if (err) {
+            response.status = 500;
+            response.message = err;
+          } else {
+            // console.log("Review removed");
+            response.status = 204;
+          }
+          res
+            .status(response.status)
+            .json(response.message);
+        });
+      }
+    })
 };
