@@ -140,3 +140,9 @@ module.exports.addSingleReview = function (req, res) {
 module.exports.updateSingleReview = function (req, res) {
 
 };
+
+
+// Delete a review
+module.exports.deleteSingleReview = function (req, res) {
+
+};

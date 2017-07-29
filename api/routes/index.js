@@ -12,7 +12,8 @@ router
 router
   .route('/hotels/:hotelId')
   .get(hotelController.getSingleHotel)
-  .put(hotelController.updateSingleHotel);
+  .put(hotelController.updateSingleHotel)
+  .delete(hotelController.deleteSingleHotel);
 
 // Review routes
 router
@@ -23,6 +24,7 @@ router
 router
   .route('/hotels/:hotelId/reviews/:reviewId')
   .get(reviewController.getSingleReview)
-  .put(reviewController.updateSingleReview);
+  .put(reviewController.updateSingleReview)
+  .delete(reviewController.deleteSingleReview);
 
 module.exports = router;

@@ -251,3 +251,34 @@ module.exports.updateSingleHotel = function (req, res) {
       }
     });
 }
+
+// Delete a single hotel from the db
+module.exports.deleteSingleHotel = function(req, res) {
+
+  // Find the hotel in db
+  var hotelId = req.params.hotelId;
+  console.log("GET hotelId", hotelId);
+
+  // Retrieve result for given Id
+  Hotel
+    .findByIdAndRemove(hotelId)
+    .exec(function (err, doc) {
+      var response = {
+        status: 200,
+        message: doc
+      };
+      if (err) {
+        console.log("Error deleting hotel");
+        response.status = 500;
+        response.message = err;
+      } else if (!doc) {
+        response.status = 500;
+        response.message = {
+          "message" : "Hotel ID not found"
+        };
+      }
+      res
+        .status(response.status)
+        .json(response.message);
+    });
+}
