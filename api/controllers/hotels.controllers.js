@@ -264,15 +264,15 @@ module.exports.deleteSingleHotel = function (req, res) {
     .findByIdAndRemove(hotelId)
     .exec(function (err, doc) {
       var response = {
-        status: 200,
+        status: 204,
         message: doc
       };
       if (err) {
         console.log("Error deleting hotel");
-        response.status = 500;
+        response.status = 404;
         response.message = err;
       } else if (!doc) {
-        response.status = 500;
+        response.status = 404;
         response.message = {
           "message": "Hotel ID not found"
         };

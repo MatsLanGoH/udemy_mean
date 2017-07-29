@@ -239,7 +239,7 @@ module.exports.deleteSingleReview = function (req, res) {
       }
 
       // Bail here if we had a problem
-      if (response.status != 200) {
+      if (response.status !== 200) {
         res
           .status(response.status)
           .json(response.message);
