@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app>
+<html lang="en" ng-app="myApp">
     <head>
         <title>Angular.js Playground</title>
         <meta charset="UTF-8">
@@ -7,7 +7,12 @@
         <link href="css/style.css" rel="stylesheet">
     </head>
     <body>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
+        <div ng-view>
+
+        </div>
+
+        <script src="angular/angular.min.js"></script>
+        <script src="angular/angular-route.min.js"></script>
         <script src="app.js"></script>
         <script src="controller.js"></script>
     </body>
