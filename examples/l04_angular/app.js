@@ -3,13 +3,19 @@ angular.module('myApp', ['ngRoute']).config(config);
 function config($routeProvider) {
   $routeProvider
     .when('/', {
-      template: "templates/main.html",
-      controller: 'MyController',
+      templateUrl: 'main/main.html',
+      controller: 'MainController',
       controllerAs: 'vm'
     })
-    .when('/hello', {
-      template: "templates/hello.html",
-      controller: 'HelloController',
+    .when('/film/:id', {
+      templateUrl: 'film/film.html',
+      controller: 'FilmController',
       controllerAs: 'vm'
-    });
+    })
+    .when('/404', {
+      templateUrl: 'templates/404.html'
+    })
+    .otherwise({
+      redirectTo: '/404'
+    })
 }
