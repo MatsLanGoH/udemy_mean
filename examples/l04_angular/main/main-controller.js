@@ -2,13 +2,12 @@ angular
   .module('myApp')
   .controller('MainController', MainController);
 
-function MainController($http) {
+function MainController(FilmFactory) {
   var vm = this;
 
-  $http
-    .get('http://swapi-tpiros.rhcloud.com/films')
+  FilmFactory
+    .getAllFilms()
     .then(function(response) {
-      console.log(response.data);
-      vm.films = response.data;
+        vm.films = response;
     });
 }
