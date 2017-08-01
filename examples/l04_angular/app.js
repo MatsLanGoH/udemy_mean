@@ -1,4 +1,6 @@
-angular.module('myApp', ['ngRoute']).config(config);
+angular
+  .module('myApp', ['ngRoute'])
+  .config(config);
 
 function config($routeProvider) {
   $routeProvider

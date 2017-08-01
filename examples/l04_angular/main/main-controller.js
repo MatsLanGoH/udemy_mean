@@ -10,4 +10,6 @@ function MainController(FilmFactory) {
     .then(function(response) {
         vm.films = response;
     });
+
+  vm.date1 = '12 February 2016';
 }
